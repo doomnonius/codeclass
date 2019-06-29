@@ -1,0 +1,35 @@
+PING learnenough.com (104.25.168.34) 56(84) bytes of data.
+64 bytes from 104.25.168.34: icmp_seq=1 ttl=55 time=4894 ms
+64 bytes from 104.25.168.34: icmp_seq=2 ttl=55 time=107 ms
+64 bytes from 104.25.168.34: icmp_seq=3 ttl=55 time=124 ms
+64 bytes from 104.25.168.34: icmp_seq=4 ttl=55 time=45.1 ms
+64 bytes from 104.25.168.34: icmp_seq=5 ttl=55 time=67.3 ms
+64 bytes from 104.25.168.34: icmp_seq=6 ttl=55 time=90.5 ms
+64 bytes from 104.25.168.34: icmp_seq=7 ttl=55 time=26.3 ms
+64 bytes from 104.25.168.34: icmp_seq=8 ttl=55 time=135 ms
+64 bytes from 104.25.168.34: icmp_seq=9 ttl=55 time=55.9 ms
+64 bytes from 104.25.168.34: icmp_seq=10 ttl=55 time=46.4 ms
+64 bytes from 104.25.168.34: icmp_seq=11 ttl=55 time=102 ms
+64 bytes from 104.25.168.34: icmp_seq=12 ttl=55 time=125 ms
+64 bytes from 104.25.168.34: icmp_seq=13 ttl=55 time=45.6 ms
+64 bytes from 104.25.168.34: icmp_seq=14 ttl=55 time=68.3 ms
+64 bytes from 104.25.168.34: icmp_seq=15 ttl=55 time=91.2 ms
+64 bytes from 104.25.168.34: icmp_seq=16 ttl=55 time=114 ms
+64 bytes from 104.25.168.34: icmp_seq=17 ttl=55 time=137 ms
+64 bytes from 104.25.168.34: icmp_seq=18 ttl=55 time=57.3 ms
+64 bytes from 104.25.168.34: icmp_seq=19 ttl=55 time=80.1 ms
+64 bytes from 104.25.168.34: icmp_seq=20 ttl=55 time=30.7 ms
+64 bytes from 104.25.168.34: icmp_seq=21 ttl=55 time=126 ms
+64 bytes from 104.25.168.34: icmp_seq=22 ttl=55 time=47.2 ms
+64 bytes from 104.25.168.34: icmp_seq=23 ttl=55 time=68.6 ms
+64 bytes from 104.25.168.34: icmp_seq=24 ttl=55 time=91.6 ms
+64 bytes from 104.25.168.34: icmp_seq=25 ttl=55 time=114 ms
+64 bytes from 104.25.168.34: icmp_seq=26 ttl=55 time=137 ms
+64 bytes from 104.25.168.34: icmp_seq=27 ttl=55 time=58.1 ms
+64 bytes from 104.25.168.34: icmp_seq=28 ttl=55 time=81.4 ms
+64 bytes from 104.25.168.34: icmp_seq=29 ttl=55 time=104 ms
+64 bytes from 104.25.168.34: icmp_seq=30 ttl=55 time=128 ms
+
+--- learnenough.com ping statistics ---
+30 packets transmitted, 30 received, 0% packet loss, time 35871ms
+rtt min/avg/max/mdev = 26.387/246.852/4894.933/863.772 ms
