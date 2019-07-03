@@ -1,0 +1,9 @@
+00 setn r0 0
+01 storen r1 10
+02 jgtzn r0 16
+03 storen r2 11
+04 loadn r2 9
+05 halt
+06 storen r2 9
+07 loadn r2 9
+08 halt

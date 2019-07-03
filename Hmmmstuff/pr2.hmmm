@@ -1,0 +1,15 @@
+# hmmm problem 2
+#
+# Name(s): 
+#
+
+# This is a placeholder whose code you'll replace:
+00 read r1          # get # from user to r1
+01 read r2          # ditto, for r2
+02 copy r3 r1       # set r3 to r1
+03 addn r2 -1       # reduce r2 by 1 before you start multiplying
+04 jeqzn r2 07      # if r2 is zero, write r3 and halt
+05 mul r3 r3 r1     # multiply
+06 jumpn 03         # jump back to reducing r2
+07 write r3         # write result r3
+08 halt

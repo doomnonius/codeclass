@@ -1,0 +1,20 @@
+# pr1a.hmmm is an example program that
+#   1) asks the user for an input
+#   2) counts up from that input
+#   3) keeps going and going...
+#
+# Name(s):
+#
+
+# Task #1a: Change the above code to "the cubic countdown"
+# See the problem description for details
+
+00 read r1          # get # from user to r1
+01 mul r2 r1 r1     # multiply r1 * r1
+02 mul r2 r2 r1     # multiply (r1 * r1) * r1
+03 write r2         # print r2
+04 jeqzn r2 08      # print r2
+05 addn r2 -1       # reduce by one
+06 write r2         # print r2
+07 jumpn 04         # jump to 04
+08 halt
