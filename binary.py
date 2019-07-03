@@ -21,12 +21,12 @@ def numToBinary(n):
 
 print(numToBinary(2342))
 
-def binaryToNum(S, n = 0):
-    """Converts a number from base two to base ten."""
-    if S == '':
-        return 1
-    else:
-        return binaryToNum(S[0:-1], n + 1) + int(S[-1])*2**n
+# def binaryToNum(S, n = 0):
+#     """Converts a number from base two to base ten."""
+#     if S == '':
+#         return 1
+#     else:
+#         return binaryToNum(S[0:-1], n + 1) + int(S[-1])*2**n
 
 def binaryToNum(S):
     """Converts a number from base two to base ten, but better."""
