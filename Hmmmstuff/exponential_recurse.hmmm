@@ -1,0 +1,25 @@
+00 read r1       # get first input
+01 read r2       # get second input
+02 setn r15 50   # initialize stack
+03 calln r14 7   # remember 04 in r14, then jump to 7
+04 nop
+05 write r13
+06 halt
+
+#Base case
+07 jnezn r2 11    # if r1 != 0, jump to 11
+08 setn r13 1     # sets r13 as the return value, 1
+09 nop
+10 jumpr r14      # dynamic jump to r14 (here mem 04, but when called from 15 is now equal to 16)
+
+# Recursive Case
+11 pushr r1 r15   # push r1 (the number we will be modifying) to the stack
+12 pushr r14 r15  # push r14 (which is mem 04) to the stack
+13 addn r2 -1     # reduce r2 by 1
+14 nop
+15 calln r14 7    # remember next mem address (here 16) into r14 then jump to 7
+16 nop
+17 popr r14 r15   # set r14 to the value on top of stack
+18 popr r1 r15    # set r1 to the value on top of stack
+19 mul r13 r1 r13 # calculate r13 = r1 * r1 (r2-1)
+20 jumpr r14      # jump to mem stored in r14

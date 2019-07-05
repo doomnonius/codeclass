@@ -6,9 +6,31 @@
 #
 #
 
-# This is a placeholder whose code you'll replace:
 00 read r1          # get # from user to r1
-01 read r2          # ditto, for r2
-02 mul r3 r1 r2     # r3 = r1 * r2
-03 write r3         # print what's in r3
-04 halt             # stop.
+01 addn r1 -1
+02 setn r15 42      # Initialize the stack pointer
+03 setn r2 0        # set 0th number of Fib sequence
+04 setn r3 1        # set 1st number of Fib
+05 calln r14 8      # remember 05 in r14, then call the function
+06 write r13        # print what's in r13
+07 halt             # stop
+
+# Base case
+08 jnezn r1 11      # the base-case test
+09 add r13 r2 r3   # If r1 is 0 the return value is 0
+10 jumpn 6        # jump to line# stored in r14
+
+# Recursive case
+11 nop #pushr r2 r15     # push r2 to stack
+12 nop #pushr r3 r15     # push r3 to stack
+13 nop #pushr r14 r15    # push r14 to stack
+14 add r4 r2 r3     # r4 = r3 + r2
+15 copy r3 r2       # set r3 = r2
+16 copy r2 r4       # set r2 = r4
+17 addn r1 -1       # reduce r1
+18 calln r14 8      # set r14 to 15, then call function again
+19 nop #popr r14 r15     # set r14 value on top of stack
+20 nop #popr r3 r15      # set r3 to top of stack
+21 nop #popr r2 r15      # set r2 to top of stack
+22 nop #add r13 r2 r3    # calculate r13 = F(n-1) + F(n-2)
+23 nop #jumpr r14

@@ -1,13 +1,18 @@
 # hmmm problem 3
 #
-# Name(s): 
+# Name(s): Devon
 #
 # Hmmm...
 #
-
-# This is a placeholder whose code you'll replace:
-00 read r1          # get # from user to r1
-01 read r2          # ditto, for r2
-02 mul r3 r1 r2     # r3 = r1 * r2
-03 write r3         # print what's in r3
-04 halt             # stop.
+00 read r1          # get n from user to r1 (assume  n >=2)
+01 setn r2 0        # set r2 to Oth number of Fibonacci
+02 setn r3 1        # set r3 to 1st number of Fibonacci
+03 addn r1 1        # increment r1 once first
+04 addn r1 -1       # reduce r1 (the counter) by one
+05 jeqzn r1 11      # if r1 is zero, end
+06 add r4 r3 r2     # add r2 and r3
+07 copy r3 r2       # copy r2 into r3
+08 copy r2 r4       # copy r4 into r2
+09 write r4         # print what's in r4
+10 jumpn 04         # jump back to reducing r1
+11 halt             # stop
