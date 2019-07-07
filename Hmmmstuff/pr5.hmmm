@@ -7,30 +7,54 @@
 #
 
 00 read r1          # get # from user to r1
-01 addn r1 -1
-02 setn r15 42      # Initialize the stack pointer
+01 nop
+02 setn r15 100      # Initialize the stack pointer
 03 setn r2 0        # set 0th number of Fib sequence
 04 setn r3 1        # set 1st number of Fib
-05 calln r14 8      # remember 05 in r14, then call the function
-06 write r13        # print what's in r13
-07 halt             # stop
+05 pushr r1 r15     # push r1 to stack
+06 addn r1 -1       # reduce r1 by one before calling
+07 calln r14 13     # remember 05 in r14, then call the function
+08 popr r10 r12
+09 popr r11 r12
+10 add r13 r10 r11
+11 write r13        # print what's in r13
+12 halt             # stop
 
 # Base case
-08 jnezn r1 11      # the base-case test
-09 add r13 r2 r3   # If r1 is 0 the return value is 0
-10 jumpn 6        # jump to line# stored in r14
+13 jnezn r1 11      # the base-case test
+14 setn r12 42      #
+15 pushr r13 r12    #
+16 popr r1 r15      # take r1 off stack
+17 addn r1 -1       # 
+18 jnezn r1 35      #
+19 pushr r13 r12    #
+20 jumpr r14        # jump to line# stored in r14
 
 # Recursive case
-11 nop #pushr r2 r15     # push r2 to stack
-12 nop #pushr r3 r15     # push r3 to stack
-13 nop #pushr r14 r15    # push r14 to stack
-14 add r4 r2 r3     # r4 = r3 + r2
-15 copy r3 r2       # set r3 = r2
-16 copy r2 r4       # set r2 = r4
-17 addn r1 -1       # reduce r1
-18 calln r14 8      # set r14 to 15, then call function again
-19 nop #popr r14 r15     # set r14 value on top of stack
-20 nop #popr r3 r15      # set r3 to top of stack
-21 nop #popr r2 r15      # set r2 to top of stack
-22 nop #add r13 r2 r3    # calculate r13 = F(n-1) + F(n-2)
-23 nop #jumpr r14
+21 pushr r2 r15     # push r2 to stack
+22 pushr r3 r15     # push r3 to stack
+23 pushr r14 r15    # push r14 to stack
+24 add r4 r2 r3     # r4 = r3 + r2
+25 copy r3 r2       # set r3 = r2
+26 copy r2 r4       # set r2 = r4
+27 addn r1 -1       # reduce r1
+28 calln r14 13      # set r14 to 15, then call function again
+29 popr r14 r15     # set r14 value on top of stack
+30 popr r3 r15      # set r3 to top of stack
+31 popr r2 r15      # set r2 to top of stack
+32 add r13 r2 r3    # calculate r13 = F(n-1) + F(n-2)
+33 jumpr r14
+34 nop
+35 pushr r2 r15     # push r2 to stack
+36 pushr r3 r15     # push r3 to stack
+37 pushr r14 r15    # push r14 to stack
+38 add r4 r2 r3     # r4 = r3 + r2
+39 copy r3 r2       # set r3 = r2
+40 copy r2 r4       # set r2 = r4
+41 addn r1 -1       # reduce r1
+42 calln r14 18      # set r14 to 15, then call function again
+43 popr r14 r15     # set r14 value on top of stack
+44 popr r3 r15      # set r3 to top of stack
+45 popr r2 r15      # set r2 to top of stack
+46 add r13 r2 r3    # calculate r13 = F(n-1) + F(n-2)
+47 jumpr r14
