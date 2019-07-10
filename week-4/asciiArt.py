@@ -50,3 +50,4 @@ def printBumps(num, s1, s2):
         x += 1
 
 printBumps(4, '%', '#')
+
