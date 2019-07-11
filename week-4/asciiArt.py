@@ -155,4 +155,4 @@ def printStripedDiamond(w, s1, s2):
         print('')
         r += 1
 
-printStripedDiamond(8, '.', '%')
+printStripedDiamond(15, '.', '%')
