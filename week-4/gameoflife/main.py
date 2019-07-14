@@ -92,26 +92,40 @@ def innerReverse(A):
     return newA
 
 def countNeighbors(row, col, A):
-    """ Returns the number of live neighbors for a cell in board A at a      particular row and col.
+    """ Returns the number of live neighbors for a cell in board A at a      particular row and col. Uses modulo to wrap around the edges.
     """
     acc = 0
-    if A[row + 1][col - 1] == 1:
+    # the row below
+    if A[(row + 1)%len(A)][(col - 1)%len(A[0])] == 1:
         acc += 1
-    if A[row + 1][col] == 1:
+    if A[(row + 1)%len(A)][col] == 1:
         acc += 1
-    if A[row + 1][col + 1] == 1:
+    if A[(row + 1)%len(A)][(col + 1)%len(A[0])] == 1:
         acc += 1
-    if A[row][col - 1] == 1:
+    # the row
+    if A[row][(col - 1)%len(A[0])] == 1:
         acc += 1
-    if A[row][col + 1] == 1:
+    if A[row][(col + 1)%len(A[0])] == 1:
         acc += 1
-    if A[row - 1][col - 1] == 1:
+    # the row above
+    if A[(row - 1)%len(A)][(col - 1)%len(A[0])] == 1:
         acc += 1
-    if A[row - 1][col] == 1:
+    if A[(row - 1)%len(A)][col] == 1:
         acc += 1
-    if A[row - 1][col + 1] == 1:
+    if A[(row - 1)%len(A)][(col + 1)%len(A[0])] == 1:
         acc += 1
     return acc
+
+def checkEdge(row, col, A):
+    if row == 0:
+        return True
+    if row == (len(A)) - 1:
+        return True
+    if col == 0:
+        return True
+    if col == (len(A[0]) - 1):
+        return True
+    return False
 
 def next_life_generation(A):
     """ Makes a copy of A and then advances one
@@ -123,8 +137,8 @@ def next_life_generation(A):
     w = len(A[0])
     newA = deepcopy(A)
     
-    for row in range(1, h-1):
-        for col in range(1, w-1):
+    for row in range(0, h):
+        for col in range(0, w):
             if countNeighbors(row, col, A) < 2:
                 newA[row][col] = 0
             elif countNeighbors(row, col, A) == 3 and A[row][col] == 0:
@@ -138,3 +152,20 @@ def next_life_generation(A):
     
     return newA
 
+A = [[1, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0]
+]
+
+A2 = next_life_generation(A)
+
+A3 = next_life_generation(A2)
+
+printBoard(A)
+
+printBoard(A2)
+
+printBoard(A3)
