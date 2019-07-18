@@ -45,12 +45,155 @@ class Date(object):
             return True
         return False
 
+    def copy(self):
+        """ Returns a new object with the same month, day, year as the calling object (self).
+        """
+        dnew = Date(self.month, self.day, self.year)
+        return dnew
 
+    def equals(self, d2):
+        """ Decides if self and d2 represent the same calendar date, whether or ont they are in the same place in memory.
+        """
+        if self.year == d2.year and self.month == d2.month and self.day == d2.day:
+            return True
+        else:
+            return False
 
+    def __eq__(self, d2):
+        """ Overrides the == operator so that it declares two of the same dates in history as ==. This way, we don't need to use the awkward d.equals(d2) syntax...
+        """
+        if self.year == d2.year and self.month == d2.month and self.day == d2.day:
+            return True
+        else:
+            return False
+    
+    def __lt__(self, d2):
+        """ Returns true if the calling object is before d2. If they are the same day, return false.
+        """
+        if self.year < d2.year:
+            return True
+        elif self.year == d2.year:
+            if self.month == d2.month:
+                if self.day < d2.day:
+                    return True
+                else:
+                    return False
+            elif self.month < d2.month:
+                return True
+            else:
+                return False
+        else:
+            return False
 
+    def __gt__(self, d2):
+        """ Returns true if the calling object is after d2. If they are the same day, return false.
+        """
+        if self.year > d2.year:
+            return True
+        elif self.year == d2.year:
+            if self.month == d2.month:
+                if self.day > d2.day:
+                    return True
+                else:
+                    return False
+            elif self.month > d2.month:
+                return True
+            else:
+                return False
+        else:
+            return False
 
+    def tomorrow(self):
+        """ Returns nothing, but changes calling object to represent one calendar day after the date it originall represented.
+        """
+        fdays = 28 + self.isLeapYear() #because True literally == 1 in python
+        daysmonth = [0, 31, fdays, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] # first zero for simpler calling of list
+        if self.day < daysmonth[self.month]:
+            self.day += 1
+        elif self.day == daysmonth[self.month]:
+            self.day = 1
+            if self.month < 12:
+                self.month += 1
+            elif self.month == 12:
+                self.month = 1
+                self.year += 1
+            else:
+                print("Somehow you've written a non-existant date.")
+        else:
+            print("Somehow you've written a non-existant date.")
 
+    def yesterday(self):
+        """ Returns nothing, but changes calling object to the day before.
+        """
+        fdays = 28 + self.isLeapYear() # works because True == 1 in python
+        daysmonth = [0, 31, fdays, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] # first zero for simpler calling of list
+        if self.day > 1:
+            self.day -= 1
+        elif self.day == 1:
+            if self.month > 1:
+                self.day = daysmonth[self.month - 1]
+                self.month -= 1
+            elif self.month == 1:
+                self.day = 31
+                self.month = 12
+                self.year -= 1
+            else:
+                print("Somehow you've written a non-existant date.")
+        else:
+            print("Somehow you've written a non-existant date.")
 
+    def __iadd__(self, N):
+        """ Only handles positive integers, and doesn't return, simply changes the calling object.
+        """
+        # print(self)
+        while N > 0:
+            self.tomorrow()
+            # print(self)
+            N -= 1
+        return self
+
+    def __isub__(self, N):
+        """ Only handles positive ints, doesn't return, changes calling object.
+        """
+        # print(self)
+        while N > 0:
+            self.yesterday()
+            # print(self)
+            N -= 1
+        return self
+
+    def __ne__(self, d2):
+        """ Returns True if not equal, False if equal.
+        """
+        return not self == d2
+
+    def __sub__(self, d2):
+        """ Returns an integer representing the number of days between self and d2 (aka returns self - d2)
+        """
+        self_copy = self.copy()
+        count = 0
+        if self < d2:
+            while self_copy != d2:
+                self_copy += 1
+                count -= 1
+            # print(count)
+        else:
+            while self_copy != d2:
+                self_copy -= 1
+                count += 1
+            # print(count)
+        return count
+
+    def dow(self):
+        """ Returns string that indicates day of week (dow) of object that calls it.
+        """
+        example = Date(7, 17, 2019) # Wednesday
+        mod = (self - example) % 7
+        days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday"]
+        if mod < 0:
+            mod = abs(mod) - 7
+            abs(mod)
+        return days[mod]
 #
 # be sure to add code for the Date class ABOVE--inside the class definition
 #
