@@ -221,7 +221,7 @@ class Connect4Board(Board):
         """
         self.wins = []
         for col in range(0, self.width):
-            if self.allowsMove:
+            if self.allowsMove(col):
                 self.addMove(col, ox)
                 if self.winsFor(ox):
                     self.wins += [col]
@@ -249,9 +249,9 @@ class Connect4Board(Board):
         self.winsO = self.colsToWin('O')
         if ox == 'X' and self.winsX != []:
             self.addMove(random.choice(self.winsX), ox)
-        elif self.winsX == [] and self.winsO != []:
+        elif ox == 'X' and self.winsX == [] and self.winsO != []:
             self.addMove(random.choice(self.winsO), ox)
-        elif self.winsX == [] and self.winsO == []:
+        elif ox == 'X' and self.winsX == [] and self.winsO == []:
             allowed = []
             for i in range(0, self.width):
                 if self.allowsMove(i):
@@ -259,9 +259,9 @@ class Connect4Board(Board):
             self.addMove(random.choice(allowed), ox)
         if ox == 'O' and self.winsO != []:
             self.addMove(random.choice(self.winsO), ox)
-        elif self.winsO == [] and self.winsX != []:
+        elif ox == 'O' and self.winsO == [] and self.winsX != []:
             self.addMove(random.choice(self.winsX), ox)
-        elif self.winsX == [] and self.winsO == []:
+        elif ox == 'O' and self.winsX == [] and self.winsO == []:
             allowed = []
             for i in range(0, self.width):
                 if self.allowsMove(i):
