@@ -45,7 +45,7 @@ def decode(coded):
     elif int(coded[0:2]) > 26:
         return alpha[int(coded[0])] + decode(coded[1:])
     elif int(coded[0:2]) < 27 and coded[1] != 0:
-        words += [alpha[int(coded[0:2])] + coded[2:]]
+        return alpha[int(coded[0:2])] + decode(coded[2:])
         words += [alpha[int(coded[0])] + coded[1:]]
     elif int(coded[1]) == 0:
         words += [alpha[int(coded[0:2])] + coded[2:]]
