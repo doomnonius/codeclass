@@ -1,0 +1,40 @@
+def cost(n):
+    out = 1
+    for i in range(n): # touches every element of n
+        out = out * 2
+    return out
+## O(n)
+
+def cost(n):
+    out = 1
+    for i in range(n): # touches every item, so O(n)
+        next = 1
+        for j in range(i): # touches every item, so O(m)
+           next = next + next
+        out = out + next
+    return out
+## O(n**2)
+
+def cost(n):
+    if n == 0:
+        return 1
+    else:
+        return cost(n-1) + cost(n-1) # touches all elements of n twice
+## O(2**n)
+
+
+def cost(n):
+    if n == 0:
+        return 1
+    else:
+        return 2*cost(n-1)
+## O(n)
+
+def cost(n):
+    return 2*n
+## O(1)
+
+
+Creating maps:
+
+Instead of doing the work in the loop each time, we can create a hash list before hand, create an id to look things up by, and then compare x to that map.
